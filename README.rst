@@ -7,6 +7,6 @@
 DMTR-331
 ########
 
-Milestone LDM-503-EFDb
+Test Plan and Report for milestone LDM-503-EFDb: EFD/telemetry data replicated at the LDF, stored in InfluxDB, aggregated into parquet files
 
 To regenerate from Jira use the github action "docgen from Jira" on your branch. 
