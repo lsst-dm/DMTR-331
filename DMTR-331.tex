@@ -1,8 +1,8 @@
 % generated from JIRA project LVV
-% using template at /Users/krughoff/lsst_stack/conda/miniconda3-py38_4.9.2/envs/docsteady-env/lib/python3.7/site-packages/docsteady/templates/tpr.latex.jinja2.
-% using docsteady version 2.2.3
+% using template at /usr/share/miniconda/envs/docsteady-env/lib/python3.7/site-packages/docsteady/templates/tpr.latex.jinja2.
+% using docsteady version 2.2.4
 % Please do not edit -- update information in Jira instead
-\documentclass[dm,lsstdraft,STR,toc]{lsstdoc}
+\documentclass[DM,lsstdraft,STR,toc]{lsstdoc}
 \usepackage{geometry}
 \usepackage{longtable,booktabs}
 \usepackage{enumitem}
@@ -31,7 +31,7 @@
 
 \title{DM-503-EFDb: Replication of Summit EFD to USDF Test Plan and Report}
 \setDocRef{\lsstDocType-\lsstDocNum}
-\date{ 2021-11-22 }
+\date{ 2022-01-26 }
 \author{ Simon Krughoff }
 
 \input{history_and_info.tex}
@@ -119,7 +119,7 @@ Section \ref{sect:overview} provides a summary of the test results, including an
 an overall assessment statement and suggestions for possible improvements.
 Section \ref{sect:detailedtestresults} provides detailed results for each step in each test case.
 
-The current status of test plan \href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testPlan/LVV-P90}{LVV-P90} in Jira is \textbf{ Draft }.
+The current status of test plan \href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testPlan/LVV-P90}{LVV-P90} in Jira is \textbf{ Approved }.
 
 \subsection{References}
 \label{sect:references}
@@ -242,7 +242,7 @@ Simon Krughoff }
 \begin{longtable}{p{2cm}cp{2.3cm}p{8.6cm}p{2.3cm}}
 \toprule
 \multicolumn{2}{r}{ T. Plan \href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testPlan/LVV-P90}{LVV-P90}:} &
-\multicolumn{2}{p{10.9cm}}{\textbf{ DM-503-EFDb: Replication of Summit EFD to USDF }} & Draft \\\hline
+\multicolumn{2}{p{10.9cm}}{\textbf{ DM-503-EFDb: Replication of Summit EFD to USDF }} & Approved \\\hline
 \multicolumn{2}{r}{ T. Cycle \href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testCycle/LVV-C181}{LVV-C181}:} &
 \multicolumn{2}{p{10.9cm}}{\textbf{ DM-503-EFDb: Replication of Summit EFD to USDF }} & Not Executed \\\hline
 \textbf{Test Cases} &  \textbf{Ver.} & \textbf{Status} & \textbf{Comment} & \textbf{Issues} \\\toprule
@@ -307,9 +307,8 @@ Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2338}{\te
 test case in Jira.
 
 Show that telemetry data can be accessed from the replicated EFD.
-Â~Further, show that the values in the replicated database agree with
-the values in the summit EFD over a specified time range and set of
-topics.
+~Further, show that the values in the replicated database agree with the
+values in the summit EFD over a specified time range and set of topics.
 
 \textbf{ Preconditions}:\\
 See prerequisites in the Test Plan LVV-P90
@@ -324,34 +323,6 @@ Detailed steps results:
 \begin{tabular}{p{2cm}p{14cm}}
 \toprule
 Step 1 & Step Execution Status: \textbf{ Not Executed } \\ \hline
-\end{tabular}
- Description \\
-{\footnotesize
-Since we need to compare results between the summit and the USDF, also
-create a connection to the summit EFD.
-
-}
-\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
-  Example Code \\
-{\footnotesize
-efd\_summit = EfdClient('summit\_efd')
-
-}
-\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
-  Expected Result \\
-{\footnotesize
-Another cell in the notebook with a second EFD connection to the summit
-EFD
-
-}
-\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
-  Actual Result \\
-{\footnotesize
-
-}
-\begin{tabular}{p{2cm}p{14cm}}
-\toprule
-Step 2 & Step Execution Status: \textbf{ Not Executed } \\ \hline
 \end{tabular}
  Description \\
 {\footnotesize
@@ -372,7 +343,7 @@ VPN connection is active
 }
 \begin{tabular}{p{2cm}p{14cm}}
 \toprule
-Step 3 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+Step 2 & Step Execution Status: \textbf{ Not Executed } \\ \hline
 \end{tabular}
  Description \\
 {\footnotesize
@@ -394,7 +365,7 @@ The JupyterLab interface is displayed in the browser
 }
 \begin{tabular}{p{2cm}p{14cm}}
 \toprule
-Step 4 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+Step 3 & Step Execution Status: \textbf{ Not Executed } \\ \hline
 \end{tabular}
  Description \\
 {\footnotesize
@@ -422,7 +393,7 @@ An empty notebook running in the LSST kernel
 }
 \begin{tabular}{p{2cm}p{14cm}}
 \toprule
-Step 5 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+Step 4 & Step Execution Status: \textbf{ Not Executed } \\ \hline
 \end{tabular}
  Description \\
 {\footnotesize
@@ -443,6 +414,34 @@ efd = EfdClient('ldf\_stable\_efd')
 {\footnotesize
 A notebook with an instance of the `EfdClient` configured to talk to the
 NCSA EFD
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 5 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+Since we need to compare results between the summit and the USDF, also
+create a connection to the summit EFD.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Example Code \\
+{\footnotesize
+efd\_summit = EfdClient('summit\_efd')
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+Another cell in the notebook with a second EFD connection to the summit
+EFD
 
 }
 \hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
