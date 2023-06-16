@@ -16,9 +16,6 @@ ifneq "$(GITSTATUS)" ""
 	GITDIRTY = -dirty
 endif
 
-LVV-T2338.pdf : LVV-T2338.ipynb
-	jupyter nbconvert --to PDF LVV-T2338.ipynb 
-
 
 $(JOBNAME).pdf: $(DOCNAME).tex meta.tex acronyms.tex LVV-T2338.pdf
 	xelatex -jobname=$(JOBNAME) $(DOCNAME)
@@ -26,6 +23,9 @@ $(JOBNAME).pdf: $(DOCNAME).tex meta.tex acronyms.tex LVV-T2338.pdf
 	xelatex -jobname=$(JOBNAME) $(DOCNAME)
 	xelatex -jobname=$(JOBNAME) $(DOCNAME)
 	xelatex -jobname=$(JOBNAME) $(DOCNAME)
+
+LVV-T2338.pdf : LVV-T2338.ipynb
+	jupyter nbconvert --to PDF LVV-T2338.ipynb 
 
 
 install-dep:
