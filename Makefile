@@ -17,7 +17,7 @@ ifneq "$(GITSTATUS)" ""
 endif
 
 LVV-T2338.pdf : LVV-T2338.ipynb
-        jupyter nbconvert --to PDF LVV-T2338.ipynb 
+	jupyter nbconvert --to PDF LVV-T2338.ipynb 
 
 
 $(JOBNAME).pdf: $(DOCNAME).tex meta.tex acronyms.tex LVV-T2338.pdf
@@ -26,6 +26,7 @@ $(JOBNAME).pdf: $(DOCNAME).tex meta.tex acronyms.tex LVV-T2338.pdf
 	xelatex -jobname=$(JOBNAME) $(DOCNAME)
 	xelatex -jobname=$(JOBNAME) $(DOCNAME)
 	xelatex -jobname=$(JOBNAME) $(DOCNAME)
+
 
 install-dep:
 	pip install -r requirements.txt
