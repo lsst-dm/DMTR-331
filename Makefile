@@ -31,6 +31,10 @@ LVV-T2338.pdf : LVV-T2338.ipynb
 install-dep:
 	pip install -r requirements.txt
 
+conda:
+	conda create --name docsteady-env docsteady -c lsst-dm -c conda-forge
+
+
 .FORCE:
 
 meta.tex: Makefile .FORCE
