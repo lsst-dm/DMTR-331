@@ -1,6 +1,6 @@
 % generated from JIRA project LVV
-% using template at /Users/womullan/anaconda3/envs/docsteady-env/lib/python3.7/site-packages/docsteady/templates/tpr.latex.jinja2.
-% using docsteady version 2.3.0
+% using template at /usr/share/miniconda/envs/docsteady-env/lib/python3.7/site-packages/docsteady/templates/tpr.latex.jinja2.
+% using docsteady version 2.4
 % Please do not edit -- update information in Jira instead
 \documentclass[DM,lsstdraft,STR,toc]{lsstdoc}
 \usepackage{geometry}
@@ -32,8 +32,8 @@
 
 \title{LDM-503-EFDb: Replication of Summit EFD to USDF Test Plan and Report}
 \setDocRef{\lsstDocType-\lsstDocNum}
-\date{ 2023-06-30 }
-\author{ Simon Krughoff }
+\date{ 2023-07-03 }
+\author{ Wil O'Mullane }
 
 \input{history_and_info.tex}
 
@@ -120,7 +120,7 @@ Section \ref{sect:overview} provides a summary of the test results, including an
 an overall assessment statement and suggestions for possible improvements.
 Section \ref{sect:detailedtestresults} provides detailed results for each step in each test case.
 
-The current status of test plan \href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testPlan/LVV-P90}{LVV-P90} in Jira is \textbf{ Draft }.
+The current status of test plan \href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testPlan/LVV-P90}{LVV-P90} in Jira is \textbf{ Approved }.
 
 \subsection{References}
 \label{sect:references}
@@ -154,9 +154,9 @@ The current status of test plan \href{https://jira.lsstcorp.org/secure/Tests.jsp
     The system demonstrates reliability (number of recorded
     messages/number of produced messages) of greater than 99.9\%
   \item
-    The summit data is being replicated to the instance at NCSA
+    The summit data is being replicated to the instance at USDF
   \item
-    Chronograf is set up and running at both the summit and NCSA
+    Chronograf is set up and running at both the summit and USDF
   \end{enumerate}
 \item
   The summit network and Kubernetes cluster are performing nominally
@@ -206,10 +206,10 @@ The personnel involved in the test campaign is shown in the following table.
 \begin{longtable}{p{3cm}p{3cm}p{3cm}p{6cm}}
 \hline
 \multicolumn{2}{r}{T. Plan \href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testPlan/LVV-P90}{LVV-P90} owner:} &
-\multicolumn{2}{l}{\textbf{ Simon Krughoff } }\\\hline
+\multicolumn{2}{l}{\textbf{ Wil O'Mullane } }\\\hline
 \multicolumn{2}{r}{T. Cycle \href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testCycle/LVV-C181}{LVV-C181} owner:} &
 \multicolumn{2}{l}{\textbf{
-Simon Krughoff }
+Wil O'Mullane }
 } \\\hline
 \textbf{Test Cases} & \textbf{Assigned to} & \textbf{Executed by} & \textbf{Additional Test Personnel} \\ \hline
 \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2338}{LVV-T2338}
@@ -224,7 +224,7 @@ Simon Krughoff }
 & {\small Wil O'Mullane } & {\small Wil O'Mullane } &
 \begin{minipage}[]{6cm}
 \smallskip
-{\small  }
+{\small William O'Mullane\\[2\baselineskip] }
 \medskip
 \end{minipage}
 \\ \hline
@@ -243,7 +243,7 @@ Simon Krughoff }
 \begin{longtable}{p{2cm}cp{2.3cm}p{8.6cm}p{2.3cm}}
 \toprule
 \multicolumn{2}{r}{ T. Plan \href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testPlan/LVV-P90}{LVV-P90}:} &
-\multicolumn{2}{p{10.9cm}}{\textbf{ LDM-503-EFDb: Replication of Summit EFD to USDF }} & Draft \\\hline
+\multicolumn{2}{p{10.9cm}}{\textbf{ LDM-503-EFDb: Replication of Summit EFD to USDF }} & Approved \\\hline
 \multicolumn{2}{r}{ T. Cycle \href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testCycle/LVV-C181}{LVV-C181}:} &
 \multicolumn{2}{p{10.9cm}}{\textbf{ LDM-503-EFDb: Replication of Summit EFD to USDF }} & Done \\\hline
 \textbf{Test Cases} &  \textbf{Ver.} & \textbf{Status} & \textbf{Comment} & \textbf{Issues} \\\toprule
@@ -304,7 +304,7 @@ Not provided.
 \paragraph{ LVV-T2338 - Replicated telemetry data agrees with telemetry produced at the summit }\mbox{}\\
 
 Version \textbf{2}.
-Status \textbf{Defined}.
+Status \textbf{Approved}.
 Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2338}{\textit{ LVV-T2338 } }
 test case in Jira.
 
@@ -647,7 +647,7 @@ Added LVV-T2334.ipynb to the test report repo
 \paragraph{ LVV-T2339 - Archival EFD products can be used for historical analysis }\mbox{}\\
 
 Version \textbf{3}.
-Status \textbf{Defined}.
+Status \textbf{Approved}.
 Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2339}{\textit{ LVV-T2339 } }
 test case in Jira.
 
@@ -786,9 +786,9 @@ a 6 day window as astropy.Time objects.
   Actual Result \\
 {\footnotesize
 \begin{verbatim}
-lsst.sal.ATPneumatics.logevent_heartbeat had 529266 messages between 2023-06-13 and 2023-06-20
-lsst.sal.MTAirCompressor.logevent_summaryState had 22 messages between 2023-06-13 and 2023-06-20
-lsst.sal.MTM1M3.logevent_raisingLoweringInfo had 6582 messages between 2023-06-13 and 2023-06-20
+lsst.sal.ATPneumatics.logevent_heartbeat had 529266 messages between 2023-06-13 and 2023-06-20 
+lsst.sal.MTAirCompressor.logevent_summaryState had 22 messages between 2023-06-13 and 2023-06-20 
+lsst.sal.MTM1M3.logevent_raisingLoweringInfo had 6582 messages between 2023-06-13 and 2023-06-20 
 Random selction of 3 'usdf' topics ['lsst.sal.ATPneumatics.logevent_heartbeat', 'lsst.sal.MTAirCompressor.logevent_summaryState', 'lsst.sal.MTM1M3.logevent_raisingLoweringInfo'] with messages between 2023-06-13 and 2023-06-20
 \end{verbatim}
 
