@@ -1,6 +1,6 @@
 % generated from JIRA project LVV
-% using template at /usr/share/miniconda/envs/docsteady-env/lib/python3.7/site-packages/docsteady/templates/tpr.latex.jinja2.
-% using docsteady version 2.4
+% using template at /usr/share/miniconda/envs/docsteady-env/lib/python3.11/site-packages/docsteady/templates/tpr.latex.jinja2.
+% using docsteady version 0.0.0
 % Please do not edit -- update information in Jira instead
 \documentclass[DM,lsstdraft,STR,toc]{lsstdoc}
 \usepackage{geometry}
@@ -14,13 +14,15 @@
 
 \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
 
-\input meta.tex
+\input{meta.tex}
 
 \newcommand{\attachmentsUrl}{https://github.com/\gitorg/\lsstDocType-\lsstDocNum/blob/\gitref/attachments}
 \providecommand{\tightlist}{
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
 \setcounter{tocdepth}{4}
+
+\providecommand{\ul}[1]{\textbf{#1}}
 
 \begin{document}
 
@@ -32,7 +34,7 @@
 
 \title{LDM-503-EFDb: Replication of Summit EFD to USDF Test Plan and Report}
 \setDocRef{\lsstDocType-\lsstDocNum}
-\date{ 2023-07-04 }
+\date{ 2023-09-03 }
 \author{ Wil O'Mullane }
 
 \input{history_and_info.tex}
@@ -62,20 +64,23 @@ and archive of the Engineering Facility Database (EFD) as implemented
 with Kafka, InfluxDB and Chronograf from the summit to the USDF. This
 plan will describe the prerequisites for beginning a test campaign, step
 by step instructions for each test case and a description of the
-expected results and test artifacts.\\[2\baselineskip]NB: The use of the
-term reliability in this document is intended to indicate the number of
-messages produced relative to the number of messages recorded in the
-EFD. The system shall be considered reliable if at least 99.9\% of
-produced messages are recorded.\\[2\baselineskip]At a high level, this
-test plan is intended to show that a nominally operating EFD at the
-summit is able to be replicated to the USDF and archived for future use
-either directly or via ingest into a secondary database management
-technology. We assume here that the archive technology will be parquet
-datasets stored on persistent/redundant disk at the USDF. There are no
-latency requirements in this test plan, but we will show that the
-replication and archiving are not falling behind relative to the summit
-instance in the aggregate. We choose a period of 6 days of continuous
-nominal operation in order to test the cases in this test plan.\\
+expected results and test artifacts.\\
+\strut \\
+NB: The use of the term reliability in this document is intended to
+indicate the number of messages produced relative to the number of
+messages recorded in the EFD. The system shall be considered reliable if
+at least 99.9\% of produced messages are recorded.\\
+\strut \\
+At a high level, this test plan is intended to show that a nominally
+operating EFD at the summit is able to be replicated to the USDF and
+archived for future use either directly or via ingest into a secondary
+database management technology. We assume here that the archive
+technology will be parquet datasets stored on persistent/redundant disk
+at the USDF. There are no latency requirements in this test plan, but we
+will show that the replication and archiving are not falling behind
+relative to the summit instance in the aggregate. We choose a period of
+6 days of continuous nominal operation in order to test the cases in
+this test plan.\\
 Successful completion of the test campaign will show that:\\
 
 \begin{enumerate}
@@ -224,7 +229,8 @@ Wil O'Mullane }
 & {\small Wil O'Mullane } & {\small Wil O'Mullane } &
 \begin{minipage}[]{6cm}
 \smallskip
-{\small William O'Mullane\\[2\baselineskip] }
+{\small William O\textquotesingle Mullane\\
+\strut \\ }
 \medskip
 \end{minipage}
 \\ \hline
@@ -311,12 +317,14 @@ test case in Jira.
 Show that telemetry data can be accessed from the replicated EFD.
 ~Further, show that the values in the replicated database agree with the
 values in the summit EFD over a specified time range and set of
-topics.\\[2\baselineskip]This test case provides partial coverage of the
-requirement DMS-REQ-0168, Summit Facility Data Communications: "The DMS
-shall provide data communications infrastructure to accept science data
-and associated metadata read-outs, and \textbf{the collection of
-ancillary and engineering data}, for transfer to the base facility.", as
-adapted to the current design for EFD replication (see
+topics.\\
+\strut \\
+This test case provides partial coverage of the requirement
+DMS-REQ-0168, Summit Facility Data Communications: "The DMS shall
+provide data communications infrastructure to accept science data and
+associated metadata read-outs, and \textbf{the collection of ancillary
+and engineering data}, for transfer to the base facility.", as adapted
+to the current design for EFD replication (see
 \href{https://dmtn-082.lsst.io}{DMTN-082}).
 
 \textbf{ Preconditions}:\\
@@ -338,7 +346,7 @@ Step 1 & Step Execution Status: \textbf{ Pass } \\ \hline
 Log in to the USDF notebook aspect:
 https://usdf-rsp-dev.slac.stanford.edu/\\
 Make sure to choose a recent weekly release and a large instance; record
-the chosen release and whether or not it is the current ``recommended''
+the chosen release and whether or not it is the current "recommended"
 release.
 
 }
@@ -365,7 +373,7 @@ Open a notebook:
 \begin{enumerate}
 \tightlist
 \item
-  Navigate to the File-\textgreater{}New-\textgreater{}Notebook
+  Navigate to the File-\textgreater New-\textgreater Notebook
 \item
   When prompted, select the LSST kernel
 \end{enumerate}
@@ -399,7 +407,7 @@ test is executed. ~Record the value used if different.
   Example Code \\
 {\footnotesize
 from lsst\_efd\_client import EfdClient\\
-efd = EfdClient('usdf\_efd')
+efd = EfdClient(\textquotesingle usdf\_efd\textquotesingle)
 
 }
 \hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
@@ -412,7 +420,7 @@ NCSA EFD
 \hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
   Actual Result \\
 {\footnotesize
-\includegraphics[width=3.12500in]{jira_imgs/3911.png}
+\includegraphics[width=3.125in, ]{jira_imgs/3911.png}
 
 }
 \begin{tabular}{p{2cm}p{14cm}}
@@ -431,7 +439,7 @@ different.
 \hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
   Example Code \\
 {\footnotesize
-efd\_summit = EfdClient('summit\_efd')
+efd\_summit = EfdClient(\textquotesingle summit\_efd\textquotesingle)
 
 }
 \hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
@@ -533,10 +541,12 @@ A cell in the notebook showing the DataFrames are the same length per
 topic between the summit and the replicated EFD. ~A cell showing the
 times in the index are the same for each topic. ~This could be done by
 converting to seconds and showing the difference is zero for every
-sample.\\[2\baselineskip]If there are missing samples, the replication
-should be better than 99\%. ~If it is not, the deviation must be traced
-to an intervening event or system other than the replication system
-itself to explain the discrepancy.
+sample.\\
+\strut \\
+If there are missing samples, the replication should be better than
+99\%. ~If it is not, the deviation must be traced to an intervening
+event or system other than the replication system itself to explain the
+discrepancy.
 
 }
 \hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
@@ -653,18 +663,18 @@ test case in Jira.
 
 Show that the archival replicated EFD products (nominally Parquet files)
 can be used to query for topics post facto and that analysis in the
-Notebook Aspect of the RSP is not only possible but
-straightforward.\\[2\baselineskip]This test case provides partial
-coverage of the requirement DMS-NB-REQ-0023, Access to All Data
-Products: ``An authorized user of the Notebook Aspect shall be able to
-access the Transformed Engineering and Facilities Database (EFD) and and
-all other LSST released data products.'', as adapted to the current
-design for EFD replication and access (see
-\href{https://dmtn-082.lsst.io}{DMTN-082}). ~Note that it is still also
-anticipated that TAP access to the EFD will be provided in the RSP as an
-alternative to the Python-API access covered by this test case. ~Note in
-particular that this test case does not cover the feature of the
-``Transformed'' EFD from the original design in which EFD data is
+Notebook Aspect of the RSP is not only possible but straightforward.\\
+\strut \\
+This test case provides partial coverage of the requirement
+DMS-NB-REQ-0023, Access to All Data Products: "An authorized user of the
+Notebook Aspect shall be able to access the Transformed Engineering and
+Facilities Database (EFD) and and all other LSST released data
+products.", as adapted to the current design for EFD replication and
+access (see \href{https://dmtn-082.lsst.io}{DMTN-082}). ~Note that it is
+still also anticipated that TAP access to the EFD will be provided in
+the RSP as an alternative to the Python-API access covered by this test
+case. ~Note in particular that this test case does not cover the feature
+of the "Transformed" EFD from the original design in which EFD data is
 pre-processed with associations to exposure/visit IDs.
 
 \textbf{ Preconditions}:\\
@@ -686,7 +696,7 @@ Step 1 & Step Execution Status: \textbf{ Pass } \\ \hline
 Log in to the USDF notebook aspect:
 https://usdf-rsp-dev.slac.stanford.edu/\\
 Make sure to choose a recent weekly release and a large instance; record
-the chosen release and whether or not it is the current ``recommended''
+the chosen release and whether or not it is the current "recommended"
 release.
 
 }
@@ -713,7 +723,7 @@ Open a notebook:
 \begin{enumerate}
 \tightlist
 \item
-  Navigate to the File-\textgreater{}New-\textgreater{}Notebook
+  Navigate to the File-\textgreater New-\textgreater Notebook
 \item
   When prompted, select the LSST kernel
 \end{enumerate}
@@ -738,8 +748,8 @@ Step 3 & Step Execution Status: \textbf{ Pass } \\ \hline
  Description \\
 {\footnotesize
 Connect to the USDF EFD.\\
-Use the EFD identifier name from the test case parameter, {usdf\_efd}⁠ ⁠
-, unless it is necessary to change at the time the test is executed.
+Use the EFD identifier name from the test case parameter, {usdf\_efd}⁠ ⁠ ,
+unless it is necessary to change at the time the test is executed.
 ~Record the value used if different.
 
 }
@@ -747,7 +757,7 @@ Use the EFD identifier name from the test case parameter, {usdf\_efd}⁠ ⁠
   Example Code \\
 {\footnotesize
 from lsst\_efd\_client import EfdClient\\
-efd = EfdClient('\{EFD\_ID\}')
+efd = EfdClient(\textquotesingle\{EFD\_ID\}\textquotesingle)
 
 }
 \hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
@@ -859,8 +869,8 @@ EFD vs the archival version.
   Actual Result \\
 {\footnotesize
 not so interesting plots like this\\
-\includegraphics[width=3.12500in]{jira_imgs/3922.png}\\
-\includegraphics[width=3.12500in]{jira_imgs/3920.png}
+\includegraphics[width=3.125in, ]{jira_imgs/3922.png}\\
+\includegraphics[width=3.125in, ]{jira_imgs/3920.png}
 
 }
 \begin{tabular}{p{2cm}p{14cm}}
@@ -893,8 +903,8 @@ report on the self consistency of the down/re-sampling of those topics.
   Actual Result \\
 {\footnotesize
 LVV-T2339.ipynb added to the DMTR-331 repo - also renderd at the end fo
-the test report
-(\textbackslash{}secref\{sec:LVV-T2339nb\})\\[2\baselineskip]
+the test report (\textbackslash secref\{sec:LVV-T2339nb\})\\
+\strut \\
 
 }
 
