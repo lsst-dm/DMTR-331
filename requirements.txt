@@ -1,0 +1,2 @@
+nbconvert
+pydantic<2.0.0

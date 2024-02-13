@@ -1,8 +1,8 @@
 % generated from JIRA project LVV
-% using template at /usr/share/miniconda/envs/docsteady-env/lib/python3.7/site-packages/docsteady/templates/tpr.latex.jinja2.
-% using docsteady version 2.4
+% using template at /Users/womullan/LSSTgit/docsteady/src/docsteady/templates/tpr.latex.jinja2.
+% using docsteady version 0.0.0
 % Please do not edit -- update information in Jira instead
-\documentclass[DM,lsstdraft,STR,toc]{lsstdoc}
+\documentclass[dm,STR,toc]{lsstdoc}
 \usepackage{geometry}
 \usepackage{longtable,booktabs}
 \usepackage{enumitem}
@@ -14,13 +14,15 @@
 
 \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
 
-\input meta.tex
+\input{meta.tex}
 
 \newcommand{\attachmentsUrl}{https://github.com/\gitorg/\lsstDocType-\lsstDocNum/blob/\gitref/attachments}
 \providecommand{\tightlist}{
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
 \setcounter{tocdepth}{4}
+
+\providecommand{\ul}[1]{\textbf{#1}}
 
 \begin{document}
 
@@ -32,8 +34,8 @@
 
 \title{LDM-503-EFDb: Replication of Summit EFD to USDF Test Plan and Report}
 \setDocRef{\lsstDocType-\lsstDocNum}
-\date{ 2023-06-30 }
-\author{ Simon Krughoff }
+\date{ 2024-02-08 }
+\author{ Wil O'Mullane }
 
 \input{history_and_info.tex}
 
@@ -62,20 +64,23 @@ and archive of the Engineering Facility Database (EFD) as implemented
 with Kafka, InfluxDB and Chronograf from the summit to the USDF. This
 plan will describe the prerequisites for beginning a test campaign, step
 by step instructions for each test case and a description of the
-expected results and test artifacts.\\[2\baselineskip]NB: The use of the
-term reliability in this document is intended to indicate the number of
-messages produced relative to the number of messages recorded in the
-EFD. The system shall be considered reliable if at least 99.9\% of
-produced messages are recorded.\\[2\baselineskip]At a high level, this
-test plan is intended to show that a nominally operating EFD at the
-summit is able to be replicated to the USDF and archived for future use
-either directly or via ingest into a secondary database management
-technology. We assume here that the archive technology will be parquet
-datasets stored on persistent/redundant disk at the USDF. There are no
-latency requirements in this test plan, but we will show that the
-replication and archiving are not falling behind relative to the summit
-instance in the aggregate. We choose a period of 6 days of continuous
-nominal operation in order to test the cases in this test plan.\\
+expected results and test artifacts.\\
+\strut \\
+NB: The use of the term reliability in this document is intended to
+indicate the number of messages produced relative to the number of
+messages recorded in the EFD. The system shall be considered reliable if
+at least 99.9\% of produced messages are recorded.\\
+\strut \\
+At a high level, this test plan is intended to show that a nominally
+operating EFD at the summit is able to be replicated to the USDF and
+archived for future use either directly or via ingest into a secondary
+database management technology. We assume here that the archive
+technology will be parquet datasets stored on persistent/redundant disk
+at the USDF. There are no latency requirements in this test plan, but we
+will show that the replication and archiving are not falling behind
+relative to the summit instance in the aggregate. We choose a period of
+6 days of continuous nominal operation in order to test the cases in
+this test plan.\\
 Successful completion of the test campaign will show that:\\
 
 \begin{enumerate}
@@ -120,7 +125,7 @@ Section \ref{sect:overview} provides a summary of the test results, including an
 an overall assessment statement and suggestions for possible improvements.
 Section \ref{sect:detailedtestresults} provides detailed results for each step in each test case.
 
-The current status of test plan \href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testPlan/LVV-P90}{LVV-P90} in Jira is \textbf{ Draft }.
+The current status of test plan \href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testPlan/LVV-P90}{LVV-P90} in Jira is \textbf{ Approved }.
 
 \subsection{References}
 \label{sect:references}
@@ -154,9 +159,9 @@ The current status of test plan \href{https://jira.lsstcorp.org/secure/Tests.jsp
     The system demonstrates reliability (number of recorded
     messages/number of produced messages) of greater than 99.9\%
   \item
-    The summit data is being replicated to the instance at NCSA
+    The summit data is being replicated to the instance at USDF
   \item
-    Chronograf is set up and running at both the summit and NCSA
+    Chronograf is set up and running at both the summit and USDF
   \end{enumerate}
 \item
   The summit network and Kubernetes cluster are performing nominally
@@ -206,17 +211,17 @@ The personnel involved in the test campaign is shown in the following table.
 \begin{longtable}{p{3cm}p{3cm}p{3cm}p{6cm}}
 \hline
 \multicolumn{2}{r}{T. Plan \href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testPlan/LVV-P90}{LVV-P90} owner:} &
-\multicolumn{2}{l}{\textbf{ Simon Krughoff } }\\\hline
+\multicolumn{2}{l}{\textbf{ Wil O'Mullane } }\\\hline
 \multicolumn{2}{r}{T. Cycle \href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testCycle/LVV-C181}{LVV-C181} owner:} &
 \multicolumn{2}{l}{\textbf{
-Simon Krughoff }
+Wil O'Mullane }
 } \\\hline
 \textbf{Test Cases} & \textbf{Assigned to} & \textbf{Executed by} & \textbf{Additional Test Personnel} \\ \hline
 \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2338}{LVV-T2338}
 & {\small Wil O'Mullane } & {\small Wil O'Mullane } &
 \begin{minipage}[]{6cm}
 \smallskip
-{\small  }
+{\small William O Mullane }
 \medskip
 \end{minipage}
 \\ \hline
@@ -224,7 +229,8 @@ Simon Krughoff }
 & {\small Wil O'Mullane } & {\small Wil O'Mullane } &
 \begin{minipage}[]{6cm}
 \smallskip
-{\small  }
+{\small William O\textquotesingle Mullane\\
+\strut \\ }
 \medskip
 \end{minipage}
 \\ \hline
@@ -238,18 +244,18 @@ Simon Krughoff }
 
 \subsection{Summary}
 \label{sect:summarytable}
-
+% Had to manully edit .. not picked up
 {\small
 \begin{longtable}{p{2cm}cp{2.3cm}p{8.6cm}p{2.3cm}}
 \toprule
 \multicolumn{2}{r}{ T. Plan \href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testPlan/LVV-P90}{LVV-P90}:} &
-\multicolumn{2}{p{10.9cm}}{\textbf{ LDM-503-EFDb: Replication of Summit EFD to USDF }} & Draft \\\hline
+\multicolumn{2}{p{10.9cm}}{\textbf{ LDM-503-EFDb: Replication of Summit EFD to USDF }} & Approved \\\hline
 \multicolumn{2}{r}{ T. Cycle \href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testCycle/LVV-C181}{LVV-C181}:} &
 \multicolumn{2}{p{10.9cm}}{\textbf{ LDM-503-EFDb: Replication of Summit EFD to USDF }} & Done \\\hline
 \textbf{Test Cases} &  \textbf{Ver.} & \textbf{Status} & \textbf{Comment} & \textbf{Issues} \\\toprule
 \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2338}{LVV-T2338}
 &  2
-& Fail &
+&  Pass &
 \begin{minipage}[]{9cm}
 \smallskip
 
@@ -258,7 +264,7 @@ Simon Krughoff }
 &   \\\hline
 \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2339}{LVV-T2339}
 &  3
-& Pass &
+&  Pass &
 \begin{minipage}[]{9cm}
 \smallskip
 
@@ -273,12 +279,13 @@ Simon Krughoff }
 \subsection{Overall Assessment}
 \label{sect:overallassessment}
 
-Not yet available.
+After the meltdown we seem to now have a good replica at USDF.\\
+\strut \\
 
 \subsection{Recommended Improvements}
 \label{sect:recommendations}
 
-Not yet available.
+Non.
 
 \newpage
 \section{Detailed Test Results}
@@ -291,7 +298,7 @@ Open test cycle {\it \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testrun/
 Test Cycle name: LDM-503-EFDb: Replication of Summit EFD to USDF\\
 Status: Done
 
-
+Engineering Facility Database of summit values queryable at USDF.
 
 \subsubsection{Software Version/Baseline}
 Not provided.
@@ -304,41 +311,44 @@ Not provided.
 \paragraph{ LVV-T2338 - Replicated telemetry data agrees with telemetry produced at the summit }\mbox{}\\
 
 Version \textbf{2}.
-Status \textbf{Defined}.
+Status \textbf{Approved}.
 Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2338}{\textit{ LVV-T2338 } }
 test case in Jira.
 
 Show that telemetry data can be accessed from the replicated EFD.
 ~Further, show that the values in the replicated database agree with the
 values in the summit EFD over a specified time range and set of
-topics.\\[2\baselineskip]This test case provides partial coverage of the
-requirement DMS-REQ-0168, Summit Facility Data Communications: "The DMS
-shall provide data communications infrastructure to accept science data
-and associated metadata read-outs, and \textbf{the collection of
-ancillary and engineering data}, for transfer to the base facility.", as
-adapted to the current design for EFD replication (see
+topics.\\
+\strut \\
+This test case provides partial coverage of the requirement
+DMS-REQ-0168, Summit Facility Data Communications: "The DMS shall
+provide data communications infrastructure to accept science data and
+associated metadata read-outs, and \textbf{the collection of ancillary
+and engineering data}, for transfer to the base facility.", as adapted
+to the current design for EFD replication (see
 \href{https://dmtn-082.lsst.io}{DMTN-082}).
 
 \textbf{ Preconditions}:\\
 See prerequisites in the Test Plan LVV-P90
 
-Execution status: {\bf Fail }
+Execution status: {\bf  }
 
 Final comment:\\
 
 
-Detailed steps results:
 
-\begin{tabular}{p{2cm}p{14cm}}
+Detailed steps results LVV-C181-LVV-T2338 LVV-E1457-1845:\\
+{\bf Note:} Steps "Not Executed" and with No Result are not shown in this report.\\
+\begin{tabular}{p{4cm}p{12cm}}
 \toprule
-Step 1 & Step Execution Status: \textbf{ Pass } \\ \hline
+Step LVV-E1457-1 & Step Execution Status: \textbf{ Pass } \\ \hline
 \end{tabular}
  Description \\
 {\footnotesize
 Log in to the USDF notebook aspect:
 https://usdf-rsp-dev.slac.stanford.edu/\\
 Make sure to choose a recent weekly release and a large instance; record
-the chosen release and whether or not it is the current ``recommended''
+the chosen release and whether or not it is the current "recommended"
 release.
 
 }
@@ -354,9 +364,9 @@ The JupyterLab interface is displayed in the browser
 Logged in choose large with latest weekly (23)
 
 }
-\begin{tabular}{p{2cm}p{14cm}}
+\begin{tabular}{p{4cm}p{12cm}}
 \toprule
-Step 2 & Step Execution Status: \textbf{ Pass } \\ \hline
+Step LVV-E1457-2 & Step Execution Status: \textbf{ Pass } \\ \hline
 \end{tabular}
  Description \\
 {\footnotesize
@@ -365,7 +375,7 @@ Open a notebook:
 \begin{enumerate}
 \tightlist
 \item
-  Navigate to the File-\textgreater{}New-\textgreater{}Notebook
+  Navigate to the File-\textgreater New-\textgreater Notebook
 \item
   When prompted, select the LSST kernel
 \end{enumerate}
@@ -383,41 +393,41 @@ An empty notebook running in the LSST kernel
 Created a notebook LVV-T2338
 
 }
-\begin{tabular}{p{2cm}p{14cm}}
+\begin{tabular}{p{4cm}p{12cm}}
 \toprule
-Step 3 & Step Execution Status: \textbf{ Pass } \\ \hline
+Step LVV-E1457-3 & Step Execution Status: \textbf{ Pass } \\ \hline
 \end{tabular}
  Description \\
 {\footnotesize
 Connect to the USDF EFD.\\
-Use the EFD identifier name from the test case parameter,
-{ldf\_stable\_efd}⁠ , unless it is necessary to change at the time the
-test is executed. ~Record the value used if different.
+Use the EFD identifier name from the test case parameter, {usdf\_efd}⁠ ⁠ ,
+unless it is necessary to change at the time the test is executed.
+~Record the value used if different.
 
 }
 \hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
   Example Code \\
 {\footnotesize
 from lsst\_efd\_client import EfdClient\\
-efd = EfdClient('usdf\_efd')
+efd = EfdClient(\textquotesingle usdf\_efd\textquotesingle)
 
 }
 \hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
   Expected Result \\
 {\footnotesize
 A notebook with an instance of the `EfdClient` configured to talk to the
-NCSA EFD
+USDF EFD
 
 }
 \hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
   Actual Result \\
 {\footnotesize
-\includegraphics[width=3.12500in]{jira_imgs/3911.png}
+\includegraphics[width=3.125in, ]{jira_imgs/3911.png}
 
 }
-\begin{tabular}{p{2cm}p{14cm}}
+\begin{tabular}{p{4cm}p{12cm}}
 \toprule
-Step 4 & Step Execution Status: \textbf{ Pass } \\ \hline
+Step LVV-E1457-4 & Step Execution Status: \textbf{ Pass } \\ \hline
 \end{tabular}
  Description \\
 {\footnotesize
@@ -431,7 +441,7 @@ different.
 \hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
   Example Code \\
 {\footnotesize
-efd\_summit = EfdClient('summit\_efd')
+efd\_summit = EfdClient(\textquotesingle summit\_efd\textquotesingle)
 
 }
 \hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
@@ -449,9 +459,9 @@ Connected to https://summit-lsp.lsst.codes/nb this allows connections to
 both USDF and Summit EFD.
 
 }
-\begin{tabular}{p{2cm}p{14cm}}
+\begin{tabular}{p{4cm}p{12cm}}
 \toprule
-Step 5 & Step Execution Status: \textbf{ Pass } \\ \hline
+Step LVV-E1457-5 & Step Execution Status: \textbf{ Pass } \\ \hline
 \end{tabular}
  Description \\
 {\footnotesize
@@ -475,13 +485,22 @@ astropy.Time objects.
   Actual Result \\
 {\footnotesize
 \begin{verbatim}
-Random selction of five 'summit' topics ['lsst.sal.GIS.logevent_heartbeat', 'lsst.sal.ATOODS.logevent_heartbeat', 'lsst.sal.Test.logevent_heartbeat', 'lsst.sal.ESS.relativeHumidity', 'lsst.sal.ESS.logevent_heartbeat'] with messages on 2023-05-20
+Random selction of five 'summit' topics which hace data on the start day of the test window
+\end{verbatim}
+
+\begin{verbatim}
+lsst.sal.MTDomeTrajectory.logevent_heartbeat had 30 messages in first 30 min of 2024-01-01
+lsst.sal.ATMonochromator.logevent_heartbeat had 29 messages in first 30 min of 2024-01-01
+lsst.sal.MTM1M3.logevent_heartbeat had 30 messages in first 30 min of 2024-01-01
+lsst.sal.ESS.lightningStrikeStatus had 30 messages in first 30 min of 2024-01-01
+lsst.sal.Watcher.logevent_heartbeat had 30 messages in first 30 min of 2024-01-01
+Random selction of five 'summit' topics ['lsst.sal.MTDomeTrajectory.logevent_heartbeat', 'lsst.sal.ATMonochromator.logevent_heartbeat', 'lsst.sal.MTM1M3.logevent_heartbeat', 'lsst.sal.ESS.lightningStrikeStatus', 'lsst.sal.Watcher.logevent_heartbeat'] with messages on 2024-01-01
 \end{verbatim}
 
 }
-\begin{tabular}{p{2cm}p{14cm}}
+\begin{tabular}{p{4cm}p{12cm}}
 \toprule
-Step 6 & Step Execution Status: \textbf{ Pass } \\ \hline
+Step LVV-E1457-6 & Step Execution Status: \textbf{ Pass } \\ \hline
 \end{tabular}
  Description \\
 {\footnotesize
@@ -503,9 +522,9 @@ its own DataFrame. ~All fields in each topic should be selected.
 combined with next step
 
 }
-\begin{tabular}{p{2cm}p{14cm}}
+\begin{tabular}{p{4cm}p{12cm}}
 \toprule
-Step 7 & Step Execution Status: \textbf{ Fail } \\ \hline
+Step LVV-E1457-7 & Step Execution Status: \textbf{ Pass } \\ \hline
 \end{tabular}
  Description \\
 {\footnotesize
@@ -533,30 +552,62 @@ A cell in the notebook showing the DataFrames are the same length per
 topic between the summit and the replicated EFD. ~A cell showing the
 times in the index are the same for each topic. ~This could be done by
 converting to seconds and showing the difference is zero for every
-sample.\\[2\baselineskip]If there are missing samples, the replication
-should be better than 99\%. ~If it is not, the deviation must be traced
-to an intervening event or system other than the replication system
-itself to explain the discrepancy.
+sample.\\
+\strut \\
+If there are missing samples, the replication should be better than
+99\%. ~If it is not, the deviation must be traced to an intervening
+event or system other than the replication system itself to explain the
+discrepancy.
 
 }
 \hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
   Actual Result \\
 {\footnotesize
 \begin{verbatim}
-lsst.sal.GIS.logevent_heartbeat had 189633 messages - summit had 189615
-lsst.sal.GIS.logevent_heartbeat does not match
-lsst.sal.ATOODS.logevent_heartbeat had 186155 messages - summit had 186148
-lsst.sal.ATOODS.logevent_heartbeat does not match
-lsst.sal.Test.logevent_heartbeat had 188501 messages - summit had 188484
-lsst.sal.Test.logevent_heartbeat does not match
-lsst.sal.ESS.relativeHumidity had 528737 messages - summit had 528478
-lsst.sal.ESS.relativeHumidity does not match
+The note book check the counts per topic over the day as well as comparing actual values in the topic.
+
+Checking 2024-01-01
+Compare lsst.sal.MTDomeTrajectory.logevent_heartbeat
+Compare lsst.sal.ATMonochromator.logevent_heartbeat
+Compare lsst.sal.MTM1M3.logevent_heartbeat
+Compare lsst.sal.ESS.lightningStrikeStatus
+Compare lsst.sal.Watcher.logevent_heartbeat
+ Checking 2024-01-02
+Compare lsst.sal.MTDomeTrajectory.logevent_heartbeat
+Compare lsst.sal.ATMonochromator.logevent_heartbeat
+Compare lsst.sal.MTM1M3.logevent_heartbeat
+Compare lsst.sal.ESS.lightningStrikeStatus
+Compare lsst.sal.Watcher.logevent_heartbeat
+ Checking 2024-01-03
+Compare lsst.sal.MTDomeTrajectory.logevent_heartbeat
+Compare lsst.sal.ATMonochromator.logevent_heartbeat
+Compare lsst.sal.MTM1M3.logevent_heartbeat
+Compare lsst.sal.ESS.lightningStrikeStatus
+Compare lsst.sal.Watcher.logevent_heartbeat
+ Checking 2024-01-04
+Compare lsst.sal.MTDomeTrajectory.logevent_heartbeat
+Compare lsst.sal.ATMonochromator.logevent_heartbeat
+Compare lsst.sal.MTM1M3.logevent_heartbeat
+Compare lsst.sal.ESS.lightningStrikeStatus
+Compare lsst.sal.Watcher.logevent_heartbeat
+ Checking 2024-01-05
+Compare lsst.sal.MTDomeTrajectory.logevent_heartbeat
+Compare lsst.sal.ATMonochromator.logevent_heartbeat
+Compare lsst.sal.MTM1M3.logevent_heartbeat
+Compare lsst.sal.ESS.lightningStrikeStatus
+Compare lsst.sal.Watcher.logevent_heartbeat
+ Checking 2024-01-06
+Compare lsst.sal.MTDomeTrajectory.logevent_heartbeat
+Compare lsst.sal.ATMonochromator.logevent_heartbeat
+Compare lsst.sal.MTM1M3.logevent_heartbeat
+Compare lsst.sal.ESS.lightningStrikeStatus
+Compare lsst.sal.Watcher.logevent_heartbeat
 \end{verbatim}
 
 }
-\begin{tabular}{p{2cm}p{14cm}}
+\begin{tabular}{p{4cm}p{12cm}}
 \toprule
-Step 8 & Step Execution Status: \textbf{ Blocked } \\ \hline
+Step LVV-E1457-8 & Step Execution Status: \textbf{ Blocked } \\ \hline
 \end{tabular}
  Description \\
 {\footnotesize
@@ -576,11 +627,12 @@ equivalent given appropriate precision.
 \hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
   Actual Result \\
 {\footnotesize
+The note book check tactual values in the topic in the previous step.
 
 }
-\begin{tabular}{p{2cm}p{14cm}}
+\begin{tabular}{p{4cm}p{12cm}}
 \toprule
-Step 9 & Step Execution Status: \textbf{ Pass } \\ \hline
+Step LVV-E1457-9 & Step Execution Status: \textbf{ Pass } \\ \hline
 \end{tabular}
  Description \\
 {\footnotesize
@@ -614,9 +666,9 @@ lsst.sal.ESS.logevent_heartbeat private_seqNum increases 100.0% of the sequence
 \end{verbatim}
 
 }
-\begin{tabular}{p{2cm}p{14cm}}
+\begin{tabular}{p{4cm}p{12cm}}
 \toprule
-Step 10 & Step Execution Status: \textbf{ Pass } \\ \hline
+Step LVV-E1457-10 & Step Execution Status: \textbf{ Pass } \\ \hline
 \end{tabular}
  Description \\
 {\footnotesize
@@ -643,50 +695,409 @@ reliability and EFD reliability
 Added LVV-T2334.ipynb to the test report repo
 
 }
-
-\paragraph{ LVV-T2339 - Archival EFD products can be used for historical analysis }\mbox{}\\
-
-Version \textbf{3}.
-Status \textbf{Defined}.
-Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2339}{\textit{ LVV-T2339 } }
-test case in Jira.
-
-Show that the archival replicated EFD products (nominally Parquet files)
-can be used to query for topics post facto and that analysis in the
-Notebook Aspect of the RSP is not only possible but
-straightforward.\\[2\baselineskip]This test case provides partial
-coverage of the requirement DMS-NB-REQ-0023, Access to All Data
-Products: ``An authorized user of the Notebook Aspect shall be able to
-access the Transformed Engineering and Facilities Database (EFD) and and
-all other LSST released data products.'', as adapted to the current
-design for EFD replication and access (see
-\href{https://dmtn-082.lsst.io}{DMTN-082}). ~Note that it is still also
-anticipated that TAP access to the EFD will be provided in the RSP as an
-alternative to the Python-API access covered by this test case. ~Note in
-particular that this test case does not cover the feature of the
-``Transformed'' EFD from the original design in which EFD data is
-pre-processed with associations to exposure/visit IDs.
-
-\textbf{ Preconditions}:\\
-
-
-Execution status: {\bf Pass }
-
-Final comment:\\
-
-
-Detailed steps results:
-
-\begin{tabular}{p{2cm}p{14cm}}
+Detailed steps results LVV-C181-LVV-T2338 LVV-E3446-3841:\\
+{\bf Note:} Steps "Not Executed" and with No Result are not shown in this report.\\
+\begin{tabular}{p{4cm}p{12cm}}
 \toprule
-Step 1 & Step Execution Status: \textbf{ Pass } \\ \hline
+Step LVV-E3446-1 & Step Execution Status: \textbf{ Pass } \\ \hline
 \end{tabular}
  Description \\
 {\footnotesize
 Log in to the USDF notebook aspect:
 https://usdf-rsp-dev.slac.stanford.edu/\\
 Make sure to choose a recent weekly release and a large instance; record
-the chosen release and whether or not it is the current ``recommended''
+the chosen release and whether or not it is the current "recommended"
+release.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+The JupyterLab interface is displayed in the browser
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+\begin{tabular}{p{4cm}p{12cm}}
+\toprule
+Step LVV-E3446-2 & Step Execution Status: \textbf{ Pass } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+Open a notebook:
+
+\begin{enumerate}
+\tightlist
+\item
+  Navigate to the File-\textgreater New-\textgreater Notebook
+\item
+  When prompted, select the LSST kernel
+\end{enumerate}
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+An empty notebook running in the LSST kernel
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+Loaded existing notebook LVVT-2338 from the github repo already on the
+RSP.
+
+}
+\begin{tabular}{p{4cm}p{12cm}}
+\toprule
+Step LVV-E3446-3 & Step Execution Status: \textbf{ Pass } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+Connect to the USDF EFD.\\
+Use the EFD identifier name from the test case parameter, {usdf\_efd}⁠ ⁠ ,
+unless it is necessary to change at the time the test is executed.
+~Record the value used if different.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Example Code \\
+{\footnotesize
+from lsst\_efd\_client import EfdClient\\
+efd = EfdClient(\textquotesingle usdf\_efd\textquotesingle)
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+A notebook with an instance of the `EfdClient` configured to talk to the
+USDF EFD
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+Last executed at 2024-02-08 10:32:00 in 3.71s
+
+}
+\begin{tabular}{p{4cm}p{12cm}}
+\toprule
+Step LVV-E3446-4 & Step Execution Status: \textbf{ Pass } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+Since we need to compare results between the summit and the USDF, also
+create a connection to the summit EFD. ~Use the EFD identifier name from
+the test case parameter, {summit\_efd}⁠ , unless it is necessary to
+change at the time the test is executed. ~Record the value used if
+different.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Example Code \\
+{\footnotesize
+efd\_summit = EfdClient(\textquotesingle summit\_efd\textquotesingle)
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+Another cell in the notebook with a second EFD connection to the summit
+EFD
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+previous cell also does this
+
+}
+\begin{tabular}{p{4cm}p{12cm}}
+\toprule
+Step LVV-E3446-5 & Step Execution Status: \textbf{ Pass } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+Choose 5 topics to query and select a 6 day window of data. The window
+is arbitrary, but must be explicit (not relative to now()) so that it
+can be reproduced. The topics should be chosen to sample the various
+topic contexts. I.e. the topics should be chosen to sample both
+diagnostic topics like heartbeat monitors as well as both high and low
+cadence telemetry topics to get a broad view on how the system behaves
+with different kinds of topics.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+A list of 5 valid SAL topics to be queried and a time window defined as
+astropy.Time objects.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+these are selected\\
+
+\begin{verbatim}
+lsst.sal.MTDomeTrajectory.logevent_heartbeat had 30 messages in first 30 min of 2024-01-01
+lsst.sal.ATMonochromator.logevent_heartbeat had 29 messages in first 30 min of 2024-01-01
+lsst.sal.MTM1M3.logevent_heartbeat had 30 messages in first 30 min of 2024-01-01
+lsst.sal.ESS.lightningStrikeStatus had 30 messages in first 30 min of 2024-01-01
+lsst.sal.Watcher.logevent_heartbeat had 30 messages in first 30 min of 2024-01-01
+Random selction of five 'summit' topics ['lsst.sal.MTDomeTrajectory.logevent_heartbeat', 'lsst.sal.ATMonochromator.logevent_heartbeat', 'lsst.sal.MTM1M3.logevent_heartbeat', 'lsst.sal.ESS.lightningStrikeStatus', 'lsst.sal.Watcher.logevent_heartbeat'] with messages on 2024-01-01
+\end{verbatim}
+
+\hfill\break
+
+\hfill\break
+
+}
+\begin{tabular}{p{4cm}p{12cm}}
+\toprule
+Step LVV-E3446-6 & Step Execution Status: \textbf{ Pass } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+Issue selections at both the summit and the data facility. These
+selections should select all fields for the chosen topics.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+A total of 10 pandas.DataFrame objects, 5 each for the summit and
+replicated EFDs. ~Each topic requires a separate query, so each will get
+its own DataFrame. ~All fields in each topic should be selected.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+previous topis have dtat - there are five - next step will retrieve
+frames and compare.
+
+}
+\begin{tabular}{p{4cm}p{12cm}}
+\toprule
+Step LVV-E3446-7 & Step Execution Status: \textbf{ Pass } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+First compare the index for each topic between the summit and replicated
+EFD. ~There should be:\\
+
+\begin{enumerate}
+\tightlist
+\item
+  The same number of samples in each topic for each location
+\item
+  Given 1) each time stamp should represent the same time
+\end{enumerate}
+
+Reliability of the replication must be at better than 99\%. If there are
+samples missing from the replicated datasets, confirm that the length of
+the replicated DataFrame divided by the length of the summit DataFrame
+is greater than 0.99 for all topics.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+A cell in the notebook showing the DataFrames are the same length per
+topic between the summit and the replicated EFD. ~A cell showing the
+times in the index are the same for each topic. ~This could be done by
+converting to seconds and showing the difference is zero for every
+sample.\\
+\strut \\
+If there are missing samples, the replication should be better than
+99\%. ~If it is not, the deviation must be traced to an intervening
+event or system other than the replication system itself to explain the
+discrepancy.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+
+}
+\begin{tabular}{p{4cm}p{12cm}}
+\toprule
+Step LVV-E3446-8 & Step Execution Status: \textbf{ Pass } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+Compare the fields for each topic between the summit and the replicated
+EFDs. ~They should be equivalent to double precision. ~This can be done
+by looping over the topics and fields and showing numpy.all (or similar)
+evaluates to True.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+A cell or cells showing that all fields for all topics evaluate as
+equivalent given appropriate precision.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+\begin{verbatim}
+ Checking 2024-01-01
+Compare lsst.sal.MTDomeTrajectory.logevent_heartbeat
+Compare lsst.sal.ATMonochromator.logevent_heartbeat
+Compare lsst.sal.MTM1M3.logevent_heartbeat
+Compare lsst.sal.ESS.lightningStrikeStatus
+Compare lsst.sal.Watcher.logevent_heartbeat
+ Checking 2024-01-02
+Compare lsst.sal.MTDomeTrajectory.logevent_heartbeat
+Compare lsst.sal.ATMonochromator.logevent_heartbeat
+Compare lsst.sal.MTM1M3.logevent_heartbeat
+Compare lsst.sal.ESS.lightningStrikeStatus
+Compare lsst.sal.Watcher.logevent_heartbeat
+ Checking 2024-01-03
+Compare lsst.sal.MTDomeTrajectory.logevent_heartbeat
+Compare lsst.sal.ATMonochromator.logevent_heartbeat
+Compare lsst.sal.MTM1M3.logevent_heartbeat
+Compare lsst.sal.ESS.lightningStrikeStatus
+Compare lsst.sal.Watcher.logevent_heartbeat
+ Checking 2024-01-04
+Compare lsst.sal.MTDomeTrajectory.logevent_heartbeat
+Compare lsst.sal.ATMonochromator.logevent_heartbeat
+Compare lsst.sal.MTM1M3.logevent_heartbeat
+Compare lsst.sal.ESS.lightningStrikeStatus
+Compare lsst.sal.Watcher.logevent_heartbeat
+ Checking 2024-01-05
+Compare lsst.sal.MTDomeTrajectory.logevent_heartbeat
+Compare lsst.sal.ATMonochromator.logevent_heartbeat
+Compare lsst.sal.MTM1M3.logevent_heartbeat
+Compare lsst.sal.ESS.lightningStrikeStatus
+Compare lsst.sal.Watcher.logevent_heartbeat
+ Checking 2024-01-06
+Compare lsst.sal.MTDomeTrajectory.logevent_heartbeat
+Compare lsst.sal.ATMonochromator.logevent_heartbeat
+Compare lsst.sal.MTM1M3.logevent_heartbeat
+Compare lsst.sal.ESS.lightningStrikeStatus
+Compare lsst.sal.Watcher.logevent_heartbeat
+\end{verbatim}
+
+\hfill\break
+
+}
+\begin{tabular}{p{4cm}p{12cm}}
+\toprule
+Step LVV-E3446-9 & Step Execution Status: \textbf{ Pass } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+Examine the summit messages to confirm that the reliability is better
+than 99.9\% for all topics. ~Keep in mind that the private\_seqNum is
+intended to be a sequentially increasing index of the messages, but that
+it gets reset after every CSC reboot. ~This must be accounted for by
+applying an offset when a reset is observed.\\
+Show the reliability is better than 99.9\% by showing that the
+private\_seqNum is sequential better than 99.9\% of the time (when
+correcte for resets).
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+A histogram or similar showing that the difference
+private\_seqNum{[}1:{]} - private\_seqnum{[}:-1{]} is 1 more than 99.9\%
+of the time.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+\begin{verbatim}
+lsst.sal.MTDomeTrajectory.logevent_heartbeat private_seqNum increases 100.0% of the sequence
+lsst.sal.ATMonochromator.logevent_heartbeat private_seqNum increases 100.0% of the sequence
+lsst.sal.MTM1M3.logevent_heartbeat private_seqNum increases 100.0% of the sequence
+lsst.sal.ESS.lightningStrikeStatus private_seqNum increases 100.0% of the sequence
+lsst.sal.Watcher.logevent_heartbeat private_seqNum increases 100.0% of the sequence
+\end{verbatim}
+
+}
+\begin{tabular}{p{4cm}p{12cm}}
+\toprule
+Step LVV-E3446-10 & Step Execution Status: \textbf{ Pass } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+Document the procedure including topics chosen, time window, replication
+reliability and EFD reliability
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+\begin{itemize}
+\tightlist
+\item
+  A document describing the process including topics and time window.
+\item
+  The document shall be in the form of a notebook with saved outputs, or
+  similar
+\end{itemize}
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+The notebook LVV-T2338 does this.
+
+}
+
+\paragraph{ LVV-T2339 - Archival EFD products can be used for historical analysis }\mbox{}\\
+
+Version \textbf{3}.
+Status \textbf{Approved}.
+Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T2339}{\textit{ LVV-T2339 } }
+test case in Jira.
+
+Show that the archival replicated EFD products (nominally Parquet files)
+can be used to query for topics post facto and that analysis in the
+Notebook Aspect of the RSP is not only possible but straightforward.\\
+\strut \\
+This test case provides partial coverage of the requirement
+DMS-NB-REQ-0023, Access to All Data Products: "An authorized user of the
+Notebook Aspect shall be able to access the Transformed Engineering and
+Facilities Database (EFD) and and all other LSST released data
+products.", as adapted to the current design for EFD replication and
+access (see \href{https://dmtn-082.lsst.io}{DMTN-082}). ~Note that it is
+still also anticipated that TAP access to the EFD will be provided in
+the RSP as an alternative to the Python-API access covered by this test
+case. ~Note in particular that this test case does not cover the feature
+of the "Transformed" EFD from the original design in which EFD data is
+pre-processed with associations to exposure/visit IDs.
+
+\textbf{ Preconditions}:\\
+
+
+Execution status: {\bf  }
+
+Final comment:\\
+
+
+
+Detailed steps results LVV-C181-LVV-T2339 LVV-E1552-1940:\\
+{\bf Note:} Steps "Not Executed" and with No Result are not shown in this report.\\
+\begin{tabular}{p{4cm}p{12cm}}
+\toprule
+Step LVV-E1552-1 & Step Execution Status: \textbf{ Pass } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+Log in to the USDF notebook aspect:
+https://usdf-rsp-dev.slac.stanford.edu/\\
+Make sure to choose a recent weekly release and a large instance; record
+the chosen release and whether or not it is the current "recommended"
 release.
 
 }
@@ -702,9 +1113,9 @@ The JupyterLab interface is displayed in the browser
 logged in have RSP at USDF
 
 }
-\begin{tabular}{p{2cm}p{14cm}}
+\begin{tabular}{p{4cm}p{12cm}}
 \toprule
-Step 2 & Step Execution Status: \textbf{ Pass } \\ \hline
+Step LVV-E1552-2 & Step Execution Status: \textbf{ Pass } \\ \hline
 \end{tabular}
  Description \\
 {\footnotesize
@@ -713,7 +1124,7 @@ Open a notebook:
 \begin{enumerate}
 \tightlist
 \item
-  Navigate to the File-\textgreater{}New-\textgreater{}Notebook
+  Navigate to the File-\textgreater New-\textgreater Notebook
 \item
   When prompted, select the LSST kernel
 \end{enumerate}
@@ -731,15 +1142,15 @@ An empty notebook running in the LSST kernel
 Copied LVV-T2338.ipynb to LVV-TT339.ipynb
 
 }
-\begin{tabular}{p{2cm}p{14cm}}
+\begin{tabular}{p{4cm}p{12cm}}
 \toprule
-Step 3 & Step Execution Status: \textbf{ Pass } \\ \hline
+Step LVV-E1552-3 & Step Execution Status: \textbf{ Pass } \\ \hline
 \end{tabular}
  Description \\
 {\footnotesize
 Connect to the USDF EFD.\\
-Use the EFD identifier name from the test case parameter, {usdf\_efd}⁠ ⁠
-, unless it is necessary to change at the time the test is executed.
+Use the EFD identifier name from the test case parameter, {usdf\_efd}⁠ ⁠ ,
+unless it is necessary to change at the time the test is executed.
 ~Record the value used if different.
 
 }
@@ -747,7 +1158,7 @@ Use the EFD identifier name from the test case parameter, {usdf\_efd}⁠ ⁠
   Example Code \\
 {\footnotesize
 from lsst\_efd\_client import EfdClient\\
-efd = EfdClient('\{EFD\_ID\}')
+efd = EfdClient(\textquotesingle\{EFD\_ID\}\textquotesingle)
 
 }
 \hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
@@ -763,9 +1174,9 @@ USDF EFD
 Last executed at 2023-06-16 19:50:41 in 3.71s
 
 }
-\begin{tabular}{p{2cm}p{14cm}}
+\begin{tabular}{p{4cm}p{12cm}}
 \toprule
-Step 4 & Step Execution Status: \textbf{ Not Executed } \\ \hline
+Step LVV-E1552-4 & Step Execution Status: \textbf{ Not Executed } \\ \hline
 \end{tabular}
  Description \\
 {\footnotesize
@@ -786,16 +1197,16 @@ a 6 day window as astropy.Time objects.
   Actual Result \\
 {\footnotesize
 \begin{verbatim}
-lsst.sal.ATPneumatics.logevent_heartbeat had 529266 messages between 2023-06-13 and 2023-06-20 
-lsst.sal.MTAirCompressor.logevent_summaryState had 22 messages between 2023-06-13 and 2023-06-20 
-lsst.sal.MTM1M3.logevent_raisingLoweringInfo had 6582 messages between 2023-06-13 and 2023-06-20 
+
+lsst.sal.MTAirCompressor.logevent_summaryState had 22 messages between 2023-06-13 and 2023-06-20
+lsst.sal.MTM1M3.logevent_raisingLoweringInfo had 6582 messages between 2023-06-13 and 2023-06-20
 Random selction of 3 'usdf' topics ['lsst.sal.ATPneumatics.logevent_heartbeat', 'lsst.sal.MTAirCompressor.logevent_summaryState', 'lsst.sal.MTM1M3.logevent_raisingLoweringInfo'] with messages between 2023-06-13 and 2023-06-20
 \end{verbatim}
 
 }
-\begin{tabular}{p{2cm}p{14cm}}
+\begin{tabular}{p{4cm}p{12cm}}
 \toprule
-Step 5 & Step Execution Status: \textbf{ Pass } \\ \hline
+Step LVV-E1552-5 & Step Execution Status: \textbf{ Pass } \\ \hline
 \end{tabular}
  Description \\
 {\footnotesize
@@ -836,9 +1247,9 @@ lsst.sal.MTM1M3.logevent_raisingLoweringInfo has fields:Index(['private_efdStamp
 \end{verbatim}
 
 }
-\begin{tabular}{p{2cm}p{14cm}}
+\begin{tabular}{p{4cm}p{12cm}}
 \toprule
-Step 6 & Step Execution Status: \textbf{ Pass } \\ \hline
+Step LVV-E1552-6 & Step Execution Status: \textbf{ Pass } \\ \hline
 \end{tabular}
  Description \\
 {\footnotesize
@@ -859,13 +1270,13 @@ EFD vs the archival version.
   Actual Result \\
 {\footnotesize
 not so interesting plots like this\\
-\includegraphics[width=3.12500in]{jira_imgs/3922.png}\\
-\includegraphics[width=3.12500in]{jira_imgs/3920.png}
+\includegraphics[width=3.125in, ]{jira_imgs/3922.png}\\
+\includegraphics[width=3.125in, ]{jira_imgs/3920.png}
 
 }
-\begin{tabular}{p{2cm}p{14cm}}
+\begin{tabular}{p{4cm}p{12cm}}
 \toprule
-Step 7 & Step Execution Status: \textbf{ Pass } \\ \hline
+Step LVV-E1552-7 & Step Execution Status: \textbf{ Pass } \\ \hline
 \end{tabular}
  Description \\
 {\footnotesize
@@ -893,8 +1304,8 @@ report on the self consistency of the down/re-sampling of those topics.
   Actual Result \\
 {\footnotesize
 LVV-T2339.ipynb added to the DMTR-331 repo - also renderd at the end fo
-the test report
-(\textbackslash{}secref\{sec:LVV-T2339nb\})\\[2\baselineskip]
+the test report (\textbackslash secref\{sec:LVV-T2339nb\})\\
+\strut \\
 
 }
 
