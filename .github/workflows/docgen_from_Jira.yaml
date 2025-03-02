@@ -13,18 +13,17 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.9
+          python-version: "3.11"
+
+      - name: Set up pandoc
+        uses: pandoc/actions/setup@v1
 
       - name: Python install
         run: |
           python -m pip install --upgrade pip
           python -m pip install "lander<2.0.0"
-
-      - name: condaenv
-        run: |
-          conda init bash
-          conda create --name docsteady-env docsteady -c lsst-dm -c conda-forge
-        shell: bash
+          python -m pip install "docsteady>3.0.0"
+`
 
       - name: docugen
         env:
