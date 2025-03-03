@@ -31,11 +31,7 @@ LVV-T2339.pdf : LVV-T2339.ipynb
 	jupyter nbconvert --to PDF LVV-T2339.ipynb 
 
 install-dep:
-	pip install -r requirements.txt
-
-conda:
-	conda create --name docsteady-env docsteady -c lsst-dm -c conda-forge
-
+	pip install nbconvert
 
 .FORCE:
 
